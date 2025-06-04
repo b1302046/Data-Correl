@@ -1,0 +1,229 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+data = """Islam	5.5	18.4
+Islam	21.7	83.1
+Islam	27.4	71.2
+Catholicism	25.6	94.5
+Catholicism	8.2	39.3
+Protestant	18.9	91.4
+Catholicism	28.3	89.2
+Orthodox	20.2	78.6
+Protestant	29	95
+Catholicism	20.1	95.3
+Islam	19.9	88
+Protestant	31.6	94.4
+Islam	29.8	100
+Islam	3.6	44.5
+Protestant	23.1	76.2
+Orthodox	24.5	91.5
+Catholicism	22.1	94.6
+Catholicism	24.1	70.4
+Catholicism	9.6	33.8
+Buddhism	6.4	86.8
+Catholicism	20.2	73.3
+Islam	17.9	83.4
+Protestant	18.9	77.3
+Catholicism	22.1	84.2
+Islam	14.1	99
+Orthodox	25	80.4
+Islam	5.6	19.9
+Catholicism	5.4	11.3
+Buddhism	3.9	56.7
+Protestant	11.4	43.9
+Catholicism	29.4	94.6
+Catholicism	11.8	72.1
+Protestant	7.5	10.6
+Islam	6.1	12.2
+Catholicism	28	94.1
+Buddhism	6.2	77.5
+Catholicism	22.3	73
+Islam	7.8	27.3
+Protestant	55.9	54
+Catholicism	25.7	85.1
+Catholicism	24.4	83.2
+Catholicism	24.6	73.2
+Orthodox	21.8	91.2
+None	26	86
+Catholicism	6.7	27.2
+Protestant	19.7	98.9
+Islam	13.5	65
+Catholicism	27.9	83.4
+Catholicism	27.8	85.2
+Catholicism	19.9	72.7
+Islam	32	72.2
+Catholicism	24.6	62.9
+Catholicism	8	66.8
+Orthodox	5	26.6
+Orthodox	4.5	19.4
+Protestant	45.8	40.5
+Protestant	30.2	85.2
+Protestant	22.2	93.5
+Catholicism	21.6	86.8
+Catholicism	15	73.7
+Islam	10.3	54.2
+Orthodox	21.7	81.9
+Protestant	22.3	92.5
+Protestant	10.9	69.8
+Orthodox	24.9	85
+Catholicism	21.3	79.9
+Catholicism	21.2	54.4
+Islam	7.7	33.9
+Islam	9.5	31.6
+Protestant	20.2	85.3
+Catholicism	22.7	39.3
+Catholicism	21.4	59.7
+Catholicism	26.4	91.5
+Protestant	21.9	99.9
+Hinduism	3.9	43.4
+Islam	6.9	69.2
+Islam	25.8	81.7
+Islam	30.4	78.7
+Catholicism	25.3	95.6
+Judaism	26.1	91.9
+Catholicism	19.9	87
+Islam	10.3	43.8
+Protestant	24.7	85.1
+Shintoism	4.3	93.2
+Islam	35.5	90.5
+Islam	21	92.9
+Protestant	7.1	40.8
+Protestant	46	54.4
+Islam	37.9	99.8
+Islam	16.6	79.8
+Buddhism	5.3	66.2
+Protestant	23.6	92.2
+Islam	32	90.1
+Catholicism	16.6	47
+Protestant	9.9	30.1
+Islam	32.5	88.4
+Catholicism	26.3	88.5
+Catholicism	22.6	99.4
+Protestant	5.3	20.6
+Protestant	5.8	27.7
+Islam	15.6	97.7
+Islam	8.6	85.2
+Islam	8.6	33.1
+Catholicism	28.9	91.9
+Protestant	52.9	73.2
+Islam	12.7	44.4
+Hinduism	10.8	75.5
+Catholicism	28.9	81.2
+Orthodox	18.9	71
+Buddhism	20.6	83.9
+Orthodox	23.3	88.2
+Islam	26.1	89.9
+Catholicism	7.2	21.2
+Protestant	17.2	62.2
+Protestant	61	83.3
+Hinduism	4.1	49.6
+Protestant	20.4	97
+Protestant	30.8	95.7
+Catholicism	23.7	61.1
+Islam	5.5	16.9
+Islam	8.9	35.5
+Protestant	50	59.8
+None	6.8	1
+Orthodox	22.4	84.2
+Protestant	23.1	99
+Islam	27	97.9
+Islam	8.6	33
+Protestant	55.3	65.6
+Catholicism	22.7	73.6
+Protestant	21.3	27
+Catholicism	20.3	78.1
+Catholicism	19.7	74.7
+Catholicism	6.4	75.2
+Catholicism	23.1	86.9
+Catholicism	20.8	85.8
+Islam	35.1	100
+Catholicism	9.6	36.3
+Orthodox	22.5	89.2
+Orthodox	23.1	92.3
+Protestant	5.8	34.4
+Catholicism	12.4	61.5
+Catholicism	19.7	75.8
+Protestant	23.7	78.7
+Islam	35.4	100
+Islam	8.8	60
+Orthodox	21.5	85.4
+Catholicism	14	87.4
+Islam	8.7	30.4
+Buddhism	6.1	96.9
+Catholicism	20.5	89.9
+Catholicism	20.2	90.4
+Islam	8.3	27.6
+Protestant	4.7	97.6
+Protestant	6.6	12.1
+Catholicism	23.8	95.5
+Buddhism	5.2	50.1
+Islam	6.6	28.7
+Protestant	26.4	75.8
+Protestant	16.5	58.9
+Protestant	20.6	95.7
+Protestant	19.5	97.3
+Islam	27.8	35.8
+Islam	14.2	36.1
+Protestant	8.4	31.9
+Buddhism	10	89.5
+Catholicism	3.8
+Catholicism	8.4	37.6
+Protestant	48.2	66.7
+Protestant	18.6	80
+Islam	26.9	73.8
+Islam	32.1	86
+Islam	18.6	21.3
+Protestant	51.6	82.3
+Protestant	5.3	10
+Orthodox	24.1	79.2
+Protestant	27.8	95.3
+Protestant	36.2	97.1
+Catholicism	27.9	89.9
+Islam	16.6	89
+Protestant	25.2	69.9
+Catholicism	25.6	61.6
+Buddhism	2.1	78.6
+Islam	17.1	26.7
+Protestant	8.1	31.2
+Protestant	15.5	32.6"""
+
+rows = [line.split('\t') for line in data.split('\n')]
+df = pd.DataFrame(rows, columns=['Religion', 'Obesity', 'Internet'])
+df['Obesity'] = pd.to_numeric(df['Obesity'], errors='coerce')
+df['Internet'] = pd.to_numeric(df['Internet'], errors='coerce')
+
+df['Religion'] = df['Religion'].str.replace('Protestant', 'Protestant')
+df['Religion'] = df['Religion'].str.replace('Protestant', 'Protestant')
+df['Religion'] = df['Religion'].str.replace('Hinduism', 'Hinduism')
+
+df = df.dropna()
+
+religions = df['Religion'].unique()
+colors = plt.cm.tab20(np.linspace(0, 1, len(religions)))
+color_map = dict(zip(religions, colors))
+
+plt.figure(figsize=(14, 10))
+
+for religion, group in df.groupby('Religion'):
+    plt.scatter(
+        x=group['Obesity'],
+        y=group['Internet'],
+        s=230,
+        color=color_map[religion],
+        alpha=0.7,
+        edgecolors='w',
+        linewidth=0.5,
+        label=religion
+    )
+
+plt.xlabel('Obesity Rate (per 100)', fontsize=12)
+plt.ylabel('Internet Access Rate (per 100)', fontsize=12)
+plt.title('Obesity vs Internet Access by Religion', fontsize=14, pad=20)
+
+plt.grid(True, alpha=0.3)
+plt.legend(title='Religion', bbox_to_anchor=(1.05, 1), loc='upper left')
+
+plt.tight_layout()
+
+plt.show()
